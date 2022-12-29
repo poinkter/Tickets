@@ -1,30 +1,32 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 #include "Database.h"
 
-template<>
-void Database::addTicket(const Ticket& ticket_){
+void Database<Ticket>::addTicket(const Ticket& ticket_){
     tickets.push_back(ticket_);
 }
 
-template<>
-void Database::deleteTicket(int index){
+void Database<Ticket>::deleteTicket(int index){
     if(tickets.size() >= index || index < 0){
         return;
     }
     tickets.erase(tickets.begin() + index);
 }
 
-template<>
-void Database::dataOutput(){
-    for(const Ticket& ticket: tickets){
-        cout << ticket;
-        cout << "--------------------" << endl << endl;
+Ticket& Database<Ticket>::findTicket(const Ticket& ticket){
+    find(tickets.begin(), tickets.end(), ticket);
+}
+
+void Database<Ticket>::dataOutput(){
+    for (auto ticket = tickets.cbegin(); ticket != tickets.cend(); ++ticket) {
+        cout << *ticket;
+        cout << "--------------" << endl;
     }
 }
 
-template<>
-Ticket& Database::operator[](int i){
+Ticket& Database<Ticket>::operator[](int i){
     if (tickets.size() >= i || i < 0){
         return tickets[i];
     }
@@ -45,11 +47,16 @@ void Database<T>::deleteTicket(int index){
     tickets.erase(tickets.begin() + index);
 }
 
+template<typename T>
+T& Database<T>::findTicket(const T& ticket){
+    find(tickets.begin(), tickets.end(), ticket);
+}
+
 template <typename T>
 void Database<T>::dataOutput(){
-    for(const Ticket& ticket: tickets){
-        cout << ticket;
-        cout << "--------------------" << endl << endl;
+    for (auto ticket = tickets.cbegin(); ticket != tickets.cend(); ++ticket) {
+        cout << *ticket;
+        cout << "--------------" << endl;
     }
 }
 

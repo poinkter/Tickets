@@ -5,32 +5,32 @@
 
 using namespace std;
 
-template<>
-class Database{
-    vector<Ticket> tickets;
-public:
-    void addTicket(const Ticket&);
-    void deleteTicket(int);
-    //Ticket& findTicket(string, int);
-
-    inline void dataOutput();
-
-    Ticket& operator[](int);
-
-    ~Database(){};
-};
-
 template<typename T>
 class Database{
     vector<T> tickets;
 public:
     void addTicket(const T&);
     void deleteTicket(int);
-    //Ticket& findTicket(string, int);
+    T& findTicket(const T&);
 
     inline void dataOutput();
 
     T& operator[](int);
+
+    ~Database(){};
+};
+
+template<>
+class Database<Ticket>{
+    vector<Ticket> tickets;
+public:
+    void addTicket(const Ticket&);
+    void deleteTicket(int);
+    Ticket& findTicket(const Ticket&);
+
+    inline void dataOutput();
+
+    Ticket& operator[](int);
 
     ~Database(){};
 };
