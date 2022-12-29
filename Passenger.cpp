@@ -1,7 +1,3 @@
-#include <string>
-#include <regex>
-#include <iostream>
-
 #include "Passenger.h"
 
 using namespace std;
@@ -12,20 +8,22 @@ Passenger::Passenger() {
 }
 
 Passenger::Passenger(string name_, int passportId_) {
-    regex nameExpr ("^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)"); 
-    if(regex_match(name_, nameExpr)){
+    regex nameExpr("^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)");
+    if (regex_match(name_, nameExpr)) {
         name = name_;
     }
-    else{ name = "NoName NoName"; 
-          cout << "Name ans Surname wrong input(replaced with: \"NoName NoName\")" << endl;  
+    else {
+        name = "NoName NoName";
+        cout << "Name ans Surname wrong input(replaced with: \"NoName NoName\")" << endl;
     }
 
-    regex passportExpr ("([1-9][0-9]{8})");
-    if(regex_match(to_string(passportId_), passportExpr)){
+    regex passportExpr("([1-9][0-9]{8})");
+    if (regex_match(to_string(passportId_), passportExpr)) {
         passportId = passportId_;
     }
-    else{ passportId = 0; 
-          cout << "Passport Id wrong input(replaced with: 0)" << endl;  
+    else {
+        passportId = 0;
+        cout << "Passport Id wrong input(replaced with: 0)" << endl;
     }
 }
 
@@ -41,20 +39,20 @@ Passenger& Passenger::setPassportId(int passportId_) {
     return *this;
 }
 
-string Passenger::getName() const{
+string Passenger::getName() const {
     return name;
 }
 
-int Passenger::getPassportId() const{
+int Passenger::getPassportId() const {
     return passportId;
 }
 
-int Passenger::operator==(const Passenger& passenger_){
+int Passenger::operator==(const Passenger& passenger_) {
     return (name == passenger_.name) && (passportId == passenger_.passportId);
 }
 
-int Passenger::operator!=(const Passenger& passenger_){
-    return !(*this == passenger_);
+int Passenger::operator!=(const Passenger& passenger_) {
+    return !(*this->operator==(passenger_));
 }
 
 void Passenger::info() {

@@ -1,4 +1,4 @@
-#include <string>
+#pragma once
 
 using namespace std;
 
@@ -21,5 +21,5 @@ public:
 
     inline void info();
 
-    ~Passenger(){};
+    ~Passenger() {};
 };

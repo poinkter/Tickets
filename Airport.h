@@ -1,8 +1,8 @@
-#include <string>
+#pragma once
 
 using namespace std;
 
-class Airport{
+class Airport {
     string airportName;
 public:
     Airport();
@@ -13,10 +13,10 @@ public:
 
     virtual void view();
 
-    virtual ~Airport(){};
+    virtual ~Airport() {};
 };
 
-class Terminal: public Airport{
+class Terminal : public Airport {
     string terminalName;
     static double parkingPrice;
 public:
@@ -29,7 +29,7 @@ public:
 
     void view();
 
-    ~Terminal(){};
+    ~Terminal() {};
 };
 
 class Airplane {
@@ -44,5 +44,5 @@ public:
     Airplane& setCompany(string);
     Airplane& setModel(string);
 
-    ~Airplane(){};
+    ~Airplane() {};
 };

@@ -1,6 +1,4 @@
-#include <iostream>
-
-#include "Date.h"
+﻿#include "Date.h"
 
 using std::cout, std::endl;
 
@@ -40,24 +38,24 @@ Date& Date::setMonth(int month_) {
     return *this;
 }
 
-int Date::getMinutes() const{
+int Date::getMinutes() const {
     return minutes;
 }
 
-int Date::getHours() const{
+int Date::getHours() const {
     return hours;
 }
 
-int Date::getDay() const{
+int Date::getDay() const {
     return day;
 }
 
-int Date::getmonth() const{
+int Date::getmonth() const {
     return month;
 }
 
-Date Date::operator=(const Date& date_){
-    if (this != &date_){
+Date Date::operator=(const Date& date_) {
+    if (this != &date_) {
         month = date_.month;
         day = date_.day;
         hours = date_.hours;
@@ -66,12 +64,12 @@ Date Date::operator=(const Date& date_){
     return *this;
 }
 
-Date Date::operator++(int i){
+Date Date::operator++(int i) {
     Date temp = *this;
     day++;
-    if (day == 32){
+    if (day == 32) {
         month--;
-        if (month == 13){
+        if (month == 13) {
             month = 1;
         }
         day = 1;
@@ -79,11 +77,11 @@ Date Date::operator++(int i){
     return temp;
 }
 
-Date& Date::operator++(){
+Date& Date::operator++() {
     ++day;
-    if (day == 32){
+    if (day == 32) {
         month--;
-        if (month == 13){
+        if (month == 13) {
             month = 1;
         }
         day = 1;
@@ -91,12 +89,12 @@ Date& Date::operator++(){
     return *this;
 }
 
-Date Date::operator--(int i){
+Date Date::operator--(int i) {
     Date temp = *this;
     day--;
-    if (day == 0){
+    if (day == 0) {
         month--;
-        if (month == 0){
+        if (month == 0) {
             month = 12;
         }
         day = 31;
@@ -104,11 +102,11 @@ Date Date::operator--(int i){
     return temp;
 }
 
-Date& Date::operator--(){
+Date& Date::operator--() {
     --day;
-    if (day == 0){
+    if (day == 0) {
         month--;
-        if (month == 0){
+        if (month == 0) {
             month = 12;
         }
         day = 31;
@@ -117,13 +115,13 @@ Date& Date::operator--(){
 }
 
 //test for correct values in Date
-bool Date::test(int value, int start, int end) { // ��������������� ������� ��� �������� ����� ����� 
-        if (value >=start && value <= end) {
-            return true;
-        }
+bool Date::test(int value, int start, int end) {  
+    if (value >= start && value <= end) {
+        return true;
+    }
     return false;
 }
 
-void Date::printDate() const{
+void Date::printDate() const {
     cout << "Time: " << month << "/" << day << "  " << hours << ":" << minutes << endl;
 }

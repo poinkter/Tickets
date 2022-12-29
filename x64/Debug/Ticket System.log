@@ -1,0 +1,9 @@
+﻿  Ticket System.cpp
+Ticket System.obj : error LNK2019: unresolved external symbol "public: __cdecl Passenger::Passenger(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int)" (??0Passenger@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z) referenced in function main
+Ticket System.obj : error LNK2019: unresolved external symbol "public: __cdecl Date::Date(int,int,int,int)" (??0Date@@QEAA@HHHH@Z) referenced in function main
+Ticket System.obj : error LNK2001: unresolved external symbol "public: virtual void __cdecl Airport::view(void)" (?view@Airport@@UEAAXXZ)
+Ticket System.obj : error LNK2019: unresolved external symbol "public: __cdecl Terminal::Terminal(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Terminal@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z) referenced in function main
+Ticket System.obj : error LNK2001: unresolved external symbol "public: virtual void __cdecl Terminal::view(void)" (?view@Terminal@@UEAAXXZ)
+Ticket System.obj : error LNK2019: unresolved external symbol "public: __cdecl Airplane::Airplane(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Airplane@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z) referenced in function main
+Ticket System.obj : error LNK2019: unresolved external symbol "public: __cdecl Ticket::Ticket(int,int,double,class Passenger &,class Airplane &,class Terminal &,class Date &,class Date &)" (??0Ticket@@QEAA@HHNAEAVPassenger@@AEAVAirplane@@AEAVTerminal@@AEAVDate@@3@Z) referenced in function main
+C:\Users\slava\projects\studio_proga\Ticket System\x64\Debug\Ticket System.exe : fatal error LNK1120: 7 unresolved externals

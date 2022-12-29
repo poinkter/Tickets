@@ -1,44 +1,41 @@
-#include <string>
-#include <iostream>
-
 #include "Airport.h"
 
 using std::string, std::cout, std::endl;
 
-Airport::Airport(){
+Airport::Airport() {
     airportName = "NoName";
 }
 
-Airport::Airport(string airportName_){
+Airport::Airport(string airportName_) {
     airportName = airportName_;
 }
 
-Airport::Airport(Airport& airp){
+Airport::Airport(Airport& airp) {
     airportName = airp.airportName;
 }
 
-Airport& Airport::setAirportName(string airportName_){
+Airport& Airport::setAirportName(string airportName_) {
     airportName = airportName_;
     return *this;
 }
 
-string Airport::getAirportName() const{
+string Airport::getAirportName() const {
     return airportName;
 }
 
-void Airport::view(){
+void Airport::view() {
     cout << "Airport " << airportName << endl;
 }
 
-Terminal::Terminal():Airport(){
+Terminal::Terminal() :Airport() {
     terminalName = "NoName";
 }
 
-Terminal::Terminal(string terminalName_, string airport): Airport(airport){
+Terminal::Terminal(string terminalName_, string airport) : Airport(airport) {
     terminalName = terminalName_;
 }
 
-Terminal::Terminal(Terminal& ter) :terminalName(ter.terminalName), Airport(ter){};
+Terminal::Terminal(Terminal& ter) : terminalName(ter.terminalName), Airport(ter) {};
 
 //----
 
@@ -47,16 +44,16 @@ Terminal& Terminal::setTerminalName(string terminalName_) {
     return *this;
 }
 
-string Terminal::getTerminalName() const{
+string Terminal::getTerminalName() const {
     return terminalName;
 
 }
 
-double Terminal::getParkingPrice(){
+double Terminal::getParkingPrice() {
     return parkingPrice;
 }
 
-void Terminal::view(){
+void Terminal::view() {
     Airport::view();
     cout << "Terminal " << terminalName << endl;
     cout << "Parking price: " << parkingPrice << endl;
@@ -84,11 +81,11 @@ Airplane& Airplane::setModel(string model_) {
     return *this;
 }
 
-string Airplane::getCompany() const{
+string Airplane::getCompany() const {
     return company;
 
 }
 
-string Airplane::getModel() const{
+string Airplane::getModel() const {
     return model;
 }

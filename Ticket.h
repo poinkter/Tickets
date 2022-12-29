@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 
 #include "Passenger.h"
@@ -46,5 +47,5 @@ public:
     friend ostream& operator<<(ostream&, const Ticket&);
     friend istream& operator>>(istream&, Ticket&);
 
-    ~Ticket(){};
+    ~Ticket() {};
 };

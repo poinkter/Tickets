@@ -1,9 +1,10 @@
+#pragma once
 class Date {
     int minutes;
     int hours;
     int day;
     int month;
-public: 
+public:
     Date();
     Date(int, int, int, int);
     Date(Date&);
@@ -17,7 +18,7 @@ public:
     Date& setHours(int);
     Date& setDay(int);
     Date& setMonth(int);
-    
+
     Date operator=(const Date&);
     Date operator++(int);
     Date& operator++();
@@ -27,5 +28,5 @@ public:
     inline bool test(int, int, int);
     inline void printDate() const;
 
-    ~Date(){};
+    ~Date() {};
 };

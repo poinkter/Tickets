@@ -1,7 +1,3 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
 #include "Database.h"
 
 void Database<Ticket>::addTicket(const Ticket& ticket_){

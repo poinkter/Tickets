@@ -1,12 +1,10 @@
-#include <string>
-#include <vector>
-
+#pragma once
 #include "Ticket.h"
 
 using namespace std;
 
 template<typename T>
-class Database{
+class Database {
     vector<T> tickets;
 public:
     void addTicket(const T&);
@@ -17,11 +15,11 @@ public:
 
     T& operator[](int);
 
-    ~Database(){};
+    ~Database() {};
 };
 
 template<>
-class Database<Ticket>{
+class Database<Ticket> {
     vector<Ticket> tickets;
 public:
     void addTicket(const Ticket&);
@@ -32,5 +30,5 @@ public:
 
     Ticket& operator[](int);
 
-    ~Database(){};
+    ~Database() {};
 };

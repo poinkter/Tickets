@@ -1,92 +1,97 @@
-#include <string>
-#include <regex>
-#include <iostream>
-
 #include "Ticket.h"
 
 using namespace std;
 
-Ticket::Ticket() :passenger(), departTime(), arrivalTime(), airplane(), terminal(){
+Ticket::Ticket() :passenger(), departTime(), arrivalTime(), airplane(), terminal() {
     ticketId = 0;
     flightNum = 0;
     price = 0;
 
 }
 
-Ticket::Ticket(int ticketId_, int flightNum_, double price_, Airplane &airplane_, Terminal &terminal_, Date &departTime_, Date &arrivalTime_)
-              :passenger(), airplane(airplane_), terminal(terminal_), departTime(departTime_), arrivalTime(arrivalTime_) {
-    regex ticketIdExpr ("([1-9]{2}[0-9]{4})");
-    if(regex_match(to_string(ticketId_), ticketIdExpr)){
+Ticket::Ticket(int ticketId_, int flightNum_, double price_, Airplane& airplane_, Terminal& terminal_, Date& departTime_, Date& arrivalTime_)
+    :passenger(), airplane(airplane_), terminal(terminal_), departTime(departTime_), arrivalTime(arrivalTime_) {
+    regex ticketIdExpr("([1-9]{2}[0-9]{4})");
+    if (regex_match(to_string(ticketId_), ticketIdExpr)) {
         ticketId = ticketId_;
     }
-    else{ ticketId = 0;
-          cout << "Ticket Id wrong input(replaced with: 0)" << endl; 
+    else {
+        ticketId = 0;
+        cout << "Ticket Id wrong input(replaced with: 0)" << endl;
     }
-    if (flightNum_ > 0){
+    if (flightNum_ > 0) {
         flightNum = flightNum_;
     }
-    else{ flightNum = 0; 
-          cout << "Flight number wrong input(replaced with: 0)" << endl;      
+    else {
+        flightNum = 0;
+        cout << "Flight number wrong input(replaced with: 0)" << endl;
     }
-    if (price_ > 0){
+    if (price_ > 0) {
         price = price_;
     }
-    else{ price = 0; 
-          cout << "Price wrong input(replaced with: 0)" << endl;
+    else {
+        price = 0;
+        cout << "Price wrong input(replaced with: 0)" << endl;
     }
 }
 
-Ticket::Ticket(int ticketId_, int flightNum_, double price_, Passenger &passenger_, Airplane &airplane_, Terminal &terminal_, Date &departTime_, Date &arrivalTime_)
-    : passenger(passenger_), airplane(airplane_), terminal(terminal_), departTime(departTime_), arrivalTime(arrivalTime_){
-    regex ticketIdExpr ("([1-9]{2}[0-9]{4})");
-    if(regex_match(to_string(ticketId_), ticketIdExpr)){
+Ticket::Ticket(int ticketId_, int flightNum_, double price_, Passenger& passenger_, Airplane& airplane_, Terminal& terminal_, Date& departTime_, Date& arrivalTime_)
+    : passenger(passenger_), airplane(airplane_), terminal(terminal_), departTime(departTime_), arrivalTime(arrivalTime_) {
+    regex ticketIdExpr("([1-9]{2}[0-9]{4})");
+    if (regex_match(to_string(ticketId_), ticketIdExpr)) {
         ticketId = ticketId_;
     }
-    else{ ticketId = 0;
-          cout << "Ticket Id wrong input(replaced with: 0)" << endl; 
+    else {
+        ticketId = 0;
+        cout << "Ticket Id wrong input(replaced with: 0)" << endl;
     }
-    if (flightNum_ > 0){
+    if (flightNum_ > 0) {
         flightNum = flightNum_;
     }
-    else{ flightNum = 0; 
-          cout << "Flight number wrong input(replaced with: 0)" << endl;      
+    else {
+        flightNum = 0;
+        cout << "Flight number wrong input(replaced with: 0)" << endl;
     }
-    if (price_ > 0){
+    if (price_ > 0) {
         price = price_;
     }
-    else{ price = 0; 
-          cout << "Price wrong input(replaced with: 0)" << endl;
+    else {
+        price = 0;
+        cout << "Price wrong input(replaced with: 0)" << endl;
     }
 }
 
-Ticket::Ticket(Passenger& passenger_): departTime(), arrivalTime(), airplane(), terminal(), passenger(passenger_){
+Ticket::Ticket(Passenger& passenger_) : departTime(), arrivalTime(), airplane(), terminal(), passenger(passenger_) {
     ticketId = flightNum = price = 0;
 }
 
-Ticket::Ticket(Ticket& tick) :ticketId(tick.ticketId), /*departTime(tick.departTime), arrivalTime(tick.arrivalTime),*/
+Ticket::Ticket(Ticket& tick) : ticketId(tick.ticketId), /*departTime(tick.departTime), arrivalTime(tick.arrivalTime),*/
 flightNum(tick.flightNum), price(tick.price), passenger(tick.passenger) {};
 
-Ticket& Ticket::setData(int ticketId_, int flightNum_, double price_/*, Date departTime_, Date arrivalTime_*/){
-    regex ticketIdExpr ("([1-9]{2}[0-9]{4})");
-    if(regex_match(to_string(ticketId_), ticketIdExpr)){
+Ticket& Ticket::setData(int ticketId_, int flightNum_, double price_/*, Date departTime_, Date arrivalTime_*/) {
+    regex ticketIdExpr("([1-9]{2}[0-9]{4})");
+    if (regex_match(to_string(ticketId_), ticketIdExpr)) {
         ticketId = ticketId_;
     }
-    else{ ticketId = 0;
-          cout << "Ticket Id wrong input(replaced with: 0)" << endl; 
+    else {
+        ticketId = 0;
+        cout << "Ticket Id wrong input(replaced with: 0)" << endl;
     }
     //departTime = departTime_;
     //arrivalTime = arrivalTime_; //operator= for Date
-    if (flightNum_ > 0){
+    if (flightNum_ > 0) {
         flightNum = flightNum_;
     }
-    else{ flightNum = 0; 
-          cout << "Flight number wrong input(replaced with: 0)" << endl;      
+    else {
+        flightNum = 0;
+        cout << "Flight number wrong input(replaced with: 0)" << endl;
     }
-    if (price_ > 0){
+    if (price_ > 0) {
         price = price_;
     }
-    else{ price = 0; 
-          cout << "Price wrong input(replaced with: 0)" << endl;
+    else {
+        price = 0;
+        cout << "Price wrong input(replaced with: 0)" << endl;
     }
     return *this;
 };
@@ -97,11 +102,11 @@ Ticket& Ticket::setPassenger(string name_, int passportId_) {
 };
 
 Ticket& Ticket::setTicketId(int ticketId_) {
-    regex ticketIdExpr ("([1-9]{2}[0-9]{4})");
-    if(regex_match(to_string(ticketId_), ticketIdExpr)){
+    regex ticketIdExpr("([1-9]{2}[0-9]{4})");
+    if (regex_match(to_string(ticketId_), ticketIdExpr)) {
         ticketId = ticketId_;
     }
-    else{ 
+    else {
         ticketId = 0;
         cout << "Ticket Id wrong input(replaced with: 0)" << endl;
     }
@@ -117,29 +122,31 @@ Ticket& Ticket::setArrivalTime(Date arrivalTime_) {
 Ticket& Ticket::setDepartTime(Date departTime_) {
     departTime = departTime_;
     return *this;
-}                                                     
+}
 
 Ticket& Ticket::setFlightNum(int flightNum_) {
-    if (flightNum_ > 0){
+    if (flightNum_ > 0) {
         flightNum = flightNum_;
     }
-    else{ flightNum = 0; 
-          cout << "Flight number wrong input(replaced with: 0)" << endl;  
+    else {
+        flightNum = 0;
+        cout << "Flight number wrong input(replaced with: 0)" << endl;
     }
     return *this;
 }
 
 Ticket& Ticket::setPrice(double price_) {
-    if (price_ > 0){
+    if (price_ > 0) {
         price = price_;
     }
-    else{ price = 0; 
-          cout << "Price wrong input(replaced with: 0)" << endl;  
+    else {
+        price = 0;
+        cout << "Price wrong input(replaced with: 0)" << endl;
     }
     return *this;
 }
 
-int Ticket::getTicketId() const{
+int Ticket::getTicketId() const {
     return ticketId;
 }
 
@@ -151,28 +158,28 @@ Date Ticket::getDepartTime() {
     return departTime;
 }
 
-int Ticket::getFlightNum() const{
+int Ticket::getFlightNum() const {
     return flightNum;
 }
 
-double Ticket::getPrice() const{
+double Ticket::getPrice() const {
     return price;
 }
 
-Ticket& Ticket::operator+(const Ticket &ticket_){
+Ticket& Ticket::operator+(const Ticket& ticket_) {
     price += ticket_.price;
     return *this;
 }
 
-int Ticket::operator<(const Ticket& ticket_){
+int Ticket::operator<(const Ticket& ticket_) {
     return price < ticket_.price;
 }
 
-int Ticket::operator>(const Ticket& ticket_){
+int Ticket::operator>(const Ticket& ticket_) {
     return price > ticket_.price;
 }
 
-Ticket::operator Passenger(){
+Ticket::operator Passenger() {
     Passenger passenger_(passenger);
     return passenger_;
 }
@@ -194,7 +201,7 @@ Ticket::operator Passenger(){
     arrivalTime.printDate();
 }*/
 
-ostream& operator<<(ostream& out, const Ticket& ticket_){
+ostream& operator<<(ostream& out, const Ticket& ticket_) {
     out << "Ticket ID: " << ticket_.ticketId << endl;
     out << "Flight Number: " << ticket_.flightNum << endl;
     out << "Total price: " << ticket_.price + ticket_.terminal.getParkingPrice() << endl;
@@ -212,30 +219,30 @@ ostream& operator<<(ostream& out, const Ticket& ticket_){
     return out;
 }
 
-istream& operator>>(istream& in, Ticket& ticket_){
+istream& operator>>(istream& in, Ticket& ticket_) {
     string temp1, temp2;
     int temp3, temp4, temp5, temp6;
-    cout << "Enter ticketId: "; 
+    cout << "Enter ticketId: ";
     in >> ticket_.ticketId;
-    cout << "Enter flight Number: "; 
+    cout << "Enter flight Number: ";
     in >> ticket_.flightNum;
-    cout << "Enter ticet price: "; 
+    cout << "Enter ticet price: ";
     in >> ticket_.price;
-    cout << "Enter Name and Surname: "; 
+    cout << "Enter Name and Surname: ";
     getline(in, temp1);
-    cout << "Enter passportId: "; 
+    cout << "Enter passportId: ";
     in >> temp3;
     ticket_.setPassenger(temp1, temp3);
-    cout << "Enter airplane company: "; 
+    cout << "Enter airplane company: ";
     in >> temp1;
-    cout << "Enter airplane model: "; 
+    cout << "Enter airplane model: ";
     in >> temp2;
     ticket_.airplane.setCompany(temp1);
     ticket_.airplane.setModel(temp2);
-    cout << "Enter airport name: "; 
+    cout << "Enter airport name: ";
     in >> temp1;
     ticket_.terminal.setAirportName(temp1);
-    cout << "Enter terminal: "; 
+    cout << "Enter terminal: ";
     in >> temp1;
     ticket_.terminal.setTerminalName(temp1);
     cout << "Enter depart time in format MM DD HH mm: ";
