@@ -1,3 +1,5 @@
+#pragma once
+
 class Date {
     int minutes;
     int hours;
@@ -6,7 +8,7 @@ class Date {
 public: 
     Date();
     Date(int, int, int, int);
-    Date(Date&);
+    Date(const Date&);
 
     inline int getMinutes() const;
     inline int getHours() const;

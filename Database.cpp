@@ -9,14 +9,16 @@ void Database<Ticket>::addTicket(const Ticket& ticket_){
 }
 
 void Database<Ticket>::deleteTicket(int index){
-    if(tickets.size() >= index || index < 0){
+    if(tickets.size() < index || index >= 0){
         return;
     }
     tickets.erase(tickets.begin() + index);
 }
 
-Ticket& Database<Ticket>::findTicket(const Ticket& ticket){
-    find(tickets.begin(), tickets.end(), ticket);
+int Database<Ticket>::findTicket(const Ticket& ticket){
+    vector<Ticket>::iterator it = find(tickets.begin(), tickets.end(), ticket);
+
+    return it - tickets.begin();
 }
 
 void Database<Ticket>::dataOutput(){
@@ -27,7 +29,7 @@ void Database<Ticket>::dataOutput(){
 }
 
 Ticket& Database<Ticket>::operator[](int i){
-    if (tickets.size() >= i || i < 0){
+    if (tickets.size() < i && i >= 0){
         return tickets[i];
     }
     cout << "No such element" << endl;
@@ -41,15 +43,17 @@ void Database<T>::addTicket(const T& ticket_){
 
 template <typename T>
 void Database<T>::deleteTicket(int index){
-    if(tickets.size() >= index || index < 0){
+    if(tickets.size() < index || index >= 0){
         return;
     }
     tickets.erase(tickets.begin() + index);
 }
 
 template<typename T>
-T& Database<T>::findTicket(const T& ticket){
-    find(tickets.begin(), tickets.end(), ticket);
+int Database<T>::findTicket(const T& ticket){
+    vector<Ticket>::iterator it = find(tickets.begin(), tickets.end(), ticket);
+
+    return it - tickets.begin();
 }
 
 template <typename T>
@@ -62,7 +66,7 @@ void Database<T>::dataOutput(){
 
 template <typename T>
 T& Database<T>::operator[](int i){
-    if (tickets.size() >= i || i < 0){
+    if (tickets.size() < i || i >= 0){
         return tickets[i];
     }
     cout << "No such element" << endl;

@@ -1,7 +1,7 @@
+#pragma once
+
 #include <string>
 #include <vector>
-
-#include "Ticket.h"
 
 using namespace std;
 
@@ -11,7 +11,7 @@ class Database{
 public:
     void addTicket(const T&);
     void deleteTicket(int);
-    T& findTicket(const T&);
+    int findTicket(const T&);
 
     inline void dataOutput();
 
@@ -26,7 +26,7 @@ class Database<Ticket>{
 public:
     void addTicket(const Ticket&);
     void deleteTicket(int);
-    Ticket& findTicket(const Ticket&);
+    int findTicket(const Ticket&);
 
     inline void dataOutput();
 

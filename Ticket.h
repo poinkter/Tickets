@@ -1,8 +1,6 @@
-#include <string>
+#pragma once
 
-#include "Passenger.h"
-#include "Date.h"
-#include "Airport.h"
+#include <string>
 
 using namespace std;
 
@@ -20,14 +18,13 @@ public:
     Ticket(int, int, double, Airplane&, Terminal&, Date&, Date&);
     Ticket(int, int, double, Passenger&, Airplane&, Terminal&, Date&, Date&);
     Ticket(Passenger&);
-    Ticket(Ticket&);
+    Ticket(const Ticket&);
 
     Ticket& setTicketId(int);
     Ticket& setDepartTime(Date);
     Ticket& setArrivalTime(Date);
     Ticket& setFlightNum(int);
     Ticket& setPrice(double);
-
     Ticket& setData(int, int, double);
     Ticket& setPassenger(string, int);
 
@@ -36,10 +33,13 @@ public:
     inline Date getDepartTime();
     inline int getFlightNum() const;
     inline double getPrice() const;
+    inline string getPassenger() const;
+    inline string getAirportName() const;
 
     Ticket& operator+(const Ticket&);
-    int operator<(const Ticket&);
-    int operator>(const Ticket&);
+    bool operator==(const Ticket&);
+    int operator<(const Ticket&) const;
+    int operator>(const Ticket&) const;
     operator Passenger();
 
     //inline void dataOutput();

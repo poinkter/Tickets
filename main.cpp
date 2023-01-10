@@ -1,45 +1,55 @@
 #include <iostream>
 
-#include "Database.h"
+#include "Date.cpp"
+#include "Airport.cpp"
+#include "Passenger.cpp"
+#include "Ticket.cpp"
+#include "Database.cpp"
 
 using namespace std;
 
 double Terminal::parkingPrice = 5;
 int main() {
-    Passenger obj("Oleg Oksg",12342343);
+    Passenger obj("Oleg Oksg",123423387), pas;
     Terminal term("TermX", "Bor");
     Airplane airpl("AirPlaneX", "modelX");
     Date date(13, 22, 13, 2);
-    Date date2(100, 2, 14, 2); // ������ "100 �����" ����� "0" �� ����������� �������. 
-    Ticket ticket(3232, 33, 32, obj, airpl, term, date, date2);
+    Date date2(100, 2, 14, 2), date3; 
+    Ticket ticket1(323235, 33, 32, obj, airpl, term, date, date2), ticket2;
     
-    /*string name, airplane = "Airplane", model = "Model", terminal = "F", airport = "Boryspil";
-    int passportId, flightNum, ticketId, day1, month1, hours1, minutes1;
-    double price = 10.5;
-    cout << "Input your Name and Surname: ";
-    getline(cin, name);
-    cout << "Input your Passpot Id: ";
-    cin >> passportId;
-    Passenger pas1(name, passportId);
-    cout << "Enter date of flyout(DD MM HH mm): ";
-    cin >> day1 >> month1 >> hours1 >> minutes1;
-    Date dt1(minutes1, hours1, day1, month1);
-    cout << "Arrival Time: " << dt1.getDay()+1 << " " << dt1.getmonth() << " " << dt1.getHours()+3 << " " << dt1.getMinutes() << endl;
-    Date dt2(dt1.getMinutes(), dt1.getHours()+3, dt1.getDay()+1, dt1.getmonth());
-    cout << "Enter Flight Number: ";
-    cin >> flightNum;
-    cout << "Enter Ticket Id: ";
-    cin >> ticketId;
-    Terminal term1(terminal, airport);
-    Airplane airpl1(airplane, model);*/
+    cout << date++.getDay() << endl;
+    ++date;
+    cout << date--.getDay() << endl;
+
+    ticket1 = ticket1 + ticket1;
+    cout << ticket1.getPrice() << endl;
+
+    cout << (ticket1 > ticket2) << endl;
+
+    cout << (pas != obj) << endl;
+
+    date3 = date;
+    cout << date3.getDay() << endl;
+
+    Database<Ticket> ticketSystem;
+    ticketSystem.addTicket(ticket1);
+    ticketSystem.addTicket(ticket2);
+    cout << ticketSystem.findTicket(ticket2) << endl;
     
-    
-    //Ticket ticket1(ticketId, flightNum, price, pas1, airpl1, term1, dt1, dt2);
-    cout << "------Ticket 1------" << endl;
-    //ticket.dataOutput();
-    cout << "--------------------" << endl;
-    cout << "------Ticket 2------" << endl;
-    //ticket1.dataOutput();
+    Ticket ticket3(obj);
+    pas = Passenger(ticket2);
+    cout << ticket3.getPassenger() << endl;
+    cout << pas.getName() << endl;
+
+    Airport* airport = new Terminal("F", "Munchen");
+    airport->view();
+
+    Database<int> env;
+    env.addTicket(30);
+    env.addTicket(20);
+    env.deleteTicket(0);
+
+    env.dataOutput();
     
     return 0;
 }

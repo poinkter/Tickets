@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 
 using namespace std;
@@ -8,7 +10,7 @@ class Passenger {
 public:
     Passenger();
     Passenger(string, int);
-    Passenger(Passenger&);
+    Passenger(const Passenger&);
 
     inline string getName() const;
     inline int getPassportId() const;
@@ -16,8 +18,8 @@ public:
     Passenger& setName(string);
     Passenger& setPassportId(int);
 
-    inline int operator==(const Passenger&);
-    inline int operator!=(const Passenger&);
+    int operator==(const Passenger&);
+    int operator!=(const Passenger&);
 
     inline void info();
 

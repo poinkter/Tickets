@@ -3,7 +3,9 @@
 
 #include "Airport.h"
 
-using std::string, std::cout, std::endl;
+using std::string;
+using std::cout; 
+using std::endl;
 
 Airport::Airport(){
     airportName = "NoName";
@@ -13,7 +15,7 @@ Airport::Airport(string airportName_){
     airportName = airportName_;
 }
 
-Airport::Airport(Airport& airp){
+Airport::Airport(const Airport& airp){
     airportName = airp.airportName;
 }
 
@@ -27,6 +29,7 @@ string Airport::getAirportName() const{
 }
 
 void Airport::view(){
+    cout << "Airport::view" << endl;
     cout << "Airport " << airportName << endl;
 }
 
@@ -38,7 +41,7 @@ Terminal::Terminal(string terminalName_, string airport): Airport(airport){
     terminalName = terminalName_;
 }
 
-Terminal::Terminal(Terminal& ter) :terminalName(ter.terminalName), Airport(ter){};
+Terminal::Terminal(const Terminal& ter) :terminalName(ter.terminalName), Airport(ter){};
 
 //----
 
@@ -57,9 +60,9 @@ double Terminal::getParkingPrice(){
 }
 
 void Terminal::view(){
-    Airport::view();
+    cout << "Terminal::view" << endl;
     cout << "Terminal " << terminalName << endl;
-    cout << "Parking price: " << parkingPrice << endl;
+    cout << "Parking price " << parkingPrice << endl;
 }
 
 Airplane::Airplane() {
@@ -72,7 +75,7 @@ Airplane::Airplane(string company_, string model_) {
     model = model_;
 }
 
-Airplane::Airplane(Airplane& airpl) :company(airpl.company), model(airpl.model) {};
+Airplane::Airplane(const Airplane& airpl) :company(airpl.company), model(airpl.model) {};
 
 
 Airplane& Airplane::setCompany(string company_) {

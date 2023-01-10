@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 
 using namespace std;
@@ -7,7 +9,7 @@ class Airport{
 public:
     Airport();
     Airport(string);
-    Airport(Airport&);
+    Airport(const Airport&);
     Airport& setAirportName(string);
     inline string getAirportName() const;
 
@@ -22,12 +24,12 @@ class Terminal: public Airport{
 public:
     Terminal();
     Terminal(string, string);
-    Terminal(Terminal&);
+    Terminal(const Terminal&);
     inline string getTerminalName() const;
     inline static double getParkingPrice();
     Terminal& setTerminalName(string);
 
-    void view();
+    void view() override;
 
     ~Terminal(){};
 };
@@ -38,7 +40,7 @@ class Airplane {
 public:
     Airplane();
     Airplane(string, string);
-    Airplane(Airplane&);
+    Airplane(const Airplane&);
     inline string getCompany() const;
     inline string getModel() const;
     Airplane& setCompany(string);

@@ -63,8 +63,8 @@ Ticket::Ticket(Passenger& passenger_): departTime(), arrivalTime(), airplane(), 
     ticketId = flightNum = price = 0;
 }
 
-Ticket::Ticket(Ticket& tick) :ticketId(tick.ticketId), /*departTime(tick.departTime), arrivalTime(tick.arrivalTime),*/
-flightNum(tick.flightNum), price(tick.price), passenger(tick.passenger) {};
+Ticket::Ticket(const Ticket& tick) :ticketId(tick.ticketId), departTime(tick.departTime), arrivalTime(tick.arrivalTime),
+flightNum(tick.flightNum), price(tick.price), passenger(tick.passenger), airplane(tick.airplane), terminal(tick.terminal) {};
 
 Ticket& Ticket::setData(int ticketId_, int flightNum_, double price_/*, Date departTime_, Date arrivalTime_*/){
     regex ticketIdExpr ("([1-9]{2}[0-9]{4})");
@@ -108,7 +108,6 @@ Ticket& Ticket::setTicketId(int ticketId_) {
     return *this;
 }
 
-//!!! operator= for Date
 Ticket& Ticket::setArrivalTime(Date arrivalTime_) {
     arrivalTime = arrivalTime_;
     return *this;
@@ -159,17 +158,29 @@ double Ticket::getPrice() const{
     return price;
 }
 
-Ticket& Ticket::operator+(const Ticket &ticket_){
+string Ticket::getPassenger() const{
+    return passenger.getName() + " " + to_string(passenger.getPassportId());
+}
+
+string Ticket::getAirportName() const{
+    return terminal.getAirportName() + " " + terminal.getTerminalName();
+}
+
+bool Ticket::operator==(const Ticket& ticket_) {
+    return ticketId == ticket_.ticketId && passenger == ticket_.passenger;
+}
+
+Ticket& Ticket::operator+(const Ticket &ticket_){// a + b + c
     price += ticket_.price;
     return *this;
 }
 
-int Ticket::operator<(const Ticket& ticket_){
+int Ticket::operator<(const Ticket& ticket_) const{
     return price < ticket_.price;
 }
 
-int Ticket::operator>(const Ticket& ticket_){
-    return price > ticket_.price;
+int Ticket::operator>(const Ticket& ticket_) const{
+    return ticket_ < *this;//!(*this < ticket_ || *this == ticket_);
 }
 
 Ticket::operator Passenger(){
@@ -177,24 +188,7 @@ Ticket::operator Passenger(){
     return passenger_;
 }
 
-/*void Ticket::dataOutput(){
-    cout << "Ticket ID: " << ticketId << endl;
-    cout << "Flight Number: " << flightNum << endl;
-    cout << "Total price: " << price + terminal.getParkingPrice() << endl;
-    cout << "Passenger Name: " << passenger.getName() << endl;
-    cout << "Passenger PassportId:" << passenger.getPassportId() << endl;
-    cout << "Airplane Company:" << airplane.getCompany() << endl;
-    cout << "Airplane model: " << airplane.getModel() << endl;
-    cout << "Airport name: " << terminal.getAirportName() << endl;
-    cout << "Terminal name: " << terminal.getTerminalName() << endl;
-    cout << "Terminal Parking price: " << terminal.getParkingPrice() << endl;
-    cout << "Depart time: " << endl;
-    departTime.printDate();
-    cout << "Arrival time: " << endl;
-    arrivalTime.printDate();
-}*/
-
-ostream& operator<<(ostream& out, const Ticket& ticket_){
+ostream& operator<<(ostream& out, const Ticket& ticket_){// this << cout
     out << "Ticket ID: " << ticket_.ticketId << endl;
     out << "Flight Number: " << ticket_.flightNum << endl;
     out << "Total price: " << ticket_.price + ticket_.terminal.getParkingPrice() << endl;
@@ -215,15 +209,15 @@ ostream& operator<<(ostream& out, const Ticket& ticket_){
 istream& operator>>(istream& in, Ticket& ticket_){
     string temp1, temp2;
     int temp3, temp4, temp5, temp6;
-    cout << "Enter ticketId: "; 
+    cout << "Enter ticketId (e.g. 110000): "; 
     in >> ticket_.ticketId;
     cout << "Enter flight Number: "; 
     in >> ticket_.flightNum;
-    cout << "Enter ticet price: "; 
+    cout << "Enter ticket price: "; 
     in >> ticket_.price;
     cout << "Enter Name and Surname: "; 
     getline(in, temp1);
-    cout << "Enter passportId: "; 
+    cout << "Enter passportId (e.g. 127527483): "; 
     in >> temp3;
     ticket_.setPassenger(temp1, temp3);
     cout << "Enter airplane company: "; 
@@ -240,11 +234,11 @@ istream& operator>>(istream& in, Ticket& ticket_){
     ticket_.terminal.setTerminalName(temp1);
     cout << "Enter depart time in format MM DD HH mm: ";
     in >> temp3 >> temp4 >> temp5 >> temp6;
-    Date dt(temp3, temp4, temp5, temp6);
-    ticket_.setDepartTime(dt);
+    Date dt1(temp3, temp4, temp5, temp6);
+    ticket_.setDepartTime(dt1);
     cout << "Enter depart time in format MM DD HH mm: ";
     in >> temp3 >> temp4 >> temp5 >> temp6;
-    Date dt(temp3, temp4, temp5, temp6);
-    ticket_.setArrivalTime(dt);
+    Date dt2(temp3, temp4, temp5, temp6);
+    ticket_.setArrivalTime(dt2);
     return in;
 }

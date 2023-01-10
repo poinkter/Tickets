@@ -2,7 +2,8 @@
 
 #include "Date.h"
 
-using std::cout, std::endl;
+using std::cout; 
+using std::endl;
 
 Date::Date() {
     minutes = 0;
@@ -18,7 +19,7 @@ Date::Date(int minutes_, int hours_, int day_, int month_) {
     setMonth(month_);
 }
 
-Date::Date(Date& date) :minutes(date.minutes), hours(date.hours), day(date.day), month(date.month) {};
+Date::Date(const Date& date) :minutes(date.minutes), hours(date.hours), day(date.day), month(date.month) {};
 
 Date& Date::setMinutes(int minutes_) {
     test(minutes_, 0, 59) ? minutes = minutes_ : minutes = 0;
@@ -70,7 +71,7 @@ Date Date::operator++(int i){
     Date temp = *this;
     day++;
     if (day == 32){
-        month--;
+        month++;
         if (month == 13){
             month = 1;
         }
@@ -82,7 +83,7 @@ Date Date::operator++(int i){
 Date& Date::operator++(){
     ++day;
     if (day == 32){
-        month--;
+        month++;
         if (month == 13){
             month = 1;
         }

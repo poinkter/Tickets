@@ -29,7 +29,7 @@ Passenger::Passenger(string name_, int passportId_) {
     }
 }
 
-Passenger::Passenger(Passenger& pas) :name(pas.name), passportId(pas.passportId) {};
+Passenger::Passenger(const Passenger& pas) :name(pas.name), passportId(pas.passportId) {};
 
 Passenger& Passenger::setName(string name_) {
     name = name_;
